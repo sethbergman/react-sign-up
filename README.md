@@ -1,5 +1,7 @@
 ## Overview
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/sethbergman/react-sign-up.svg)](https://greenkeeper.io/)
+
 This sign up form has a few different features that are unique to React. The sign up form itself is a modal that uses CSS animations and slides down when the page loads and slides up after the user logs in. We are going to learn about the following features for this sign up form:
 
 -   Using `state` and `props`
