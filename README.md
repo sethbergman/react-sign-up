@@ -29,27 +29,34 @@ In this particular instance we are going to use the component's `state` to show 
 Let's create the sign up form by first wrapping it in a parent `App` component. This way we can define some methods in this parent component that we can use to show or hide the sign up modal view.
 
 The basic stateful `App` component looks like this:
+
 ```
 {lang=javascript,crop-query=(.App)}
-&lt;&lt;[](src/App.js)```
+&lt;&lt;[](src/App.js)
+```
 
 React components have a method that is frequently used called `getInitialState`.
 
 React expects us to return a JavaScript object from this method that stores any sort of data we want to manipulate or display in the component.
 
 Let's tell React that the `App` component keeps a single item in it's local state, a boolean we will call `mounted`.
+
 ```
 {lang=javascript,crop-query=(.App .getInitialState)}
 &lt;&lt;[](src/App.js)
 ```
+
 React components also have 'lifecycle hooks' where we can define custom functionality during the different phases of the component. These methods are executed at specific points in a component's lifecycle [1](#references).
 
 One of these hooks is the `componentDidMount` method is executed just after the component has been rendered to the page. In order to define functionality during the lifecycle, we need to define the method in the component:
+
 ```
 {lang=javascript,crop-query=(.App .componentDidMount)}
 &lt;&lt;[](src/App.js)
 ```
-This method is where we set our `mounted` state to `true` as now our form is inserted into the DOM and our component is prepared to show it. We change the state of our data using a component method `setState`
+
+This method is where we set our `mounted` state to `true` as now our form is inserted into the DOM and our component is prepared to show it. We change the state of our data using a component method `setState`.
+
 ```
 {lang=javascript,crop-query=window(.componentDidMount,1,1)}
 &lt;&lt;[](src/App.js)
@@ -59,10 +66,12 @@ Although a component's state is available via `this.state`, we should treat `thi
 The `setState` method sends the state object into a queue to be batched for DOM updates, so modifying or changing any portion of a component's state should only happen via `setState`.
 
 We only want to show the modal if it is mounted, so we can include a conditional rendering statement in our component that renders the form if and only if the component has been mounted.
+
 ```
 {lang=javascript,crop-query=window(.App .render,2,6)}
 &lt;&lt;[](src/App.js)
 ```
+
 This conditional statement creates the child component if the `App` component has been rendered to the DOM. Our child component, `Modal` contains a form inside of it.
 
 ## The Form
@@ -80,16 +89,19 @@ The difference between `state` and `props` can be a little confusing at first. `
  A child component _can_ inform the parent component about an update it makes, but cannot change the data itself. We'll look at this process next:
 
 Another aspect about the `props` attribute that can be a little confusing is passing down a function as a prop. When our `Modal` component is created, we pass down the `App` component's `handleSubmit` function as a prop:
+
 ```
 {lang=javascript,crop-query=window(.App .render,4,4)}
 &lt;&lt;[](src/App.js)
 ```
 Then, in our form itself, the onSubmit event handler is given the submit callback function we passed down as a prop:
+
 ```
 {lang=javascript,crop-query=window(.Modal .render,3,5)}
 &lt;&lt;[](src/App.js)
 ```
 The function we define as `onSubmit` can then be called by the child `<Modal /` component when the user hits the submit button in the view. The actual code for the function is found in the parent component:
+
 ```
 {lang=javascript,crop-query=(.App .handleSubmit)}
 &lt;&lt;[](src/App.js)
@@ -130,24 +142,29 @@ Adding animations via CSS files aren't always straight-forward. To address this 
  ```npm install react-addons-css-transition-group```
 
 Let's look at how to use ReactCSSTransitionGroup with our form. We'll use a few `props` on the `ReactCSSTransitionGroup` element which define the CSS `transition` name as well as a few `props` to define variables:
+
 ```
 {lang=javascript,crop-query=(.App .render)}
 &lt;&lt;[](src/App.js)
 ```
 When the `App` component is mounted, our  `child` variable is assigned our Modal component:
+
 ```
 {lang=javascript,crop-query=window(.App .render,1,5)}
 &lt;&lt;[](src/App.js)
 ```
+
 By wrapping the modal in a `ReactCSSTransitionGroup` component, we get access to the animation effect whenever the modal is added and removed from the DOM.
 
 The `ReactCSSTransitionGroup` must be available and mounted in the DOM for the animations to take effect.
 
 If the `ReactCSSTransitionGroup` node is mounted at the same time as it's children, the animations will not work. The `ReactCSSTransitionGroup` has two properties that manage the durations of the animation when the modal enters/leaves the DOM:
+
 ```
 {lang=javascript,crop-query=window(.App .render,9,12)}
 &lt;&lt;[](src/App.js)
 ```
+
 Using ReactCSSTransitionGroup is great because our component code is declarative and the CSS manages the transitions in between our states of mounted and unmounted (e.g. we're not iterating over `opacity` and `y` position).
 
 
