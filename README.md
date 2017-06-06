@@ -29,40 +29,40 @@ In this particular instance we are going to use the component's `state` to show 
 Let's create the sign up form by first wrapping it in a parent `App` component. This way we can define some methods in this parent component that we can use to show or hide the sign up modal view.
 
 The basic stateful `App` component looks like this:
-
+```
 {lang=javascript,crop-query=(.App)}
-&lt;&lt;[](src/App.js)
+&lt;&lt;[](src/App.js)```
 
 React components have a method that is frequently used called `getInitialState`.
 
 React expects us to return a JavaScript object from this method that stores any sort of data we want to manipulate or display in the component.
 
 Let's tell React that the `App` component keeps a single item in it's local state, a boolean we will call `mounted`.
-
+```
 {lang=javascript,crop-query=(.App .getInitialState)}
 &lt;&lt;[](src/App.js)
-
+```
 React components also have 'lifecycle hooks' where we can define custom functionality during the different phases of the component. These methods are executed at specific points in a component's lifecycle [1](#references).
 
 One of these hooks is the `componentDidMount` method is executed just after the component has been rendered to the page. In order to define functionality during the lifecycle, we need to define the method in the component:
-
+```
 {lang=javascript,crop-query=(.App .componentDidMount)}
 &lt;&lt;[](src/App.js)
-
+```
 This method is where we set our `mounted` state to `true` as now our form is inserted into the DOM and our component is prepared to show it. We change the state of our data using a component method `setState`
-
+```
 {lang=javascript,crop-query=window(.componentDidMount,1,1)}
 &lt;&lt;[](src/App.js)
-
+```
 Although a component's state is available via `this.state`, we should treat `this.state`as a readonly object and only ever change the state using the `setState` method available on a React component.
 
 The `setState` method sends the state object into a queue to be batched for DOM updates, so modifying or changing any portion of a component's state should only happen via `setState`.
 
 We only want to show the modal if it is mounted, so we can include a conditional rendering statement in our component that renders the form if and only if the component has been mounted.
-
+```
 {lang=javascript,crop-query=window(.App .render,2,6)}
 &lt;&lt;[](src/App.js)
-
+```
 This conditional statement creates the child component if the `App` component has been rendered to the DOM. Our child component, `Modal` contains a form inside of it.
 
 ## The Form
