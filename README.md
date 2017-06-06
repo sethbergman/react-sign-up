@@ -124,7 +124,8 @@ These props allow us to create reuseable components since we just have to pass i
 
 ```
 {lang=javascript,crop-query=(.Input)}
-<<[](src/App.js)```
+<<[](src/App.js)
+```
 
 ### Native browser validation
 
@@ -145,14 +146,13 @@ Let's look at how to use ReactCSSTransitionGroup with our form. We'll use a few 
 
 ```
 {lang=javascript,crop-query=(.App .render)}
-&lt;&lt;[](src/App.js)
-```
+&lt;&lt;[](src/App.js)```
+
 When the `App` component is mounted, our  `child` variable is assigned our Modal component:
 
 ```
 {lang=javascript,crop-query=window(.App .render,1,5)}
-&lt;&lt;[](src/App.js)
-```
+&lt;&lt;[](src/App.js)```
 
 By wrapping the modal in a `ReactCSSTransitionGroup` component, we get access to the animation effect whenever the modal is added and removed from the DOM.
 
@@ -162,8 +162,7 @@ If the `ReactCSSTransitionGroup` node is mounted at the same time as it's childr
 
 ```
 {lang=javascript,crop-query=window(.App .render,9,12)}
-&lt;&lt;[](src/App.js)
-```
+&lt;&lt;[](src/App.js)```
 
 Using ReactCSSTransitionGroup is great because our component code is declarative and the CSS manages the transitions in between our states of mounted and unmounted (e.g. we're not iterating over `opacity` and `y` position).
 
