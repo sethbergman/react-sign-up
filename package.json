@@ -4,7 +4,7 @@
 	"private": true,
 	"engines": {
 		"node": "7.0.1"
-	}
+	},
 	"homepage": "http://react-sign-up.npmstack.com",
 	"dependencies": {
 		"react": "^15.3.1",
